@@ -63,12 +63,20 @@ namespace Math_Quiz
 		/// </summary>
 		int dividetwo;
 
+		/// <summary>
+		/// оставшееся время.
+		/// </summary>
+		/// <remarks>
+		/// поле, где хранится число оставшегося времени.
+		/// </remarks>
+		int timeleft;
+
 		//методы
 		/// <summary>
 		/// начало математического теста.
 		/// </summary>
 		public void StartMQ()
-        {
+		{
 			//				пример со сложением.
 
 			//добавление случайных чисел в поля.
@@ -113,6 +121,34 @@ namespace Math_Quiz
 			dividedRightLabel.Text = $"{dividetwo}";
 			//установка в поле ответа значение 0.
 			quotient.Value = 0;
+
+
+			//				начало теста
+			//запуск таймера при запуске теста.
+			timeleft = 30;
+			timelabel.Text = $"{timeleft} секунд.";
+			timer1.Start();
+		}
+
+		/// <summary>
+		/// проверка ответов.
+		/// </summary>
+		/// <remarks>
+		/// проверяет поля для ввода ответов.
+		/// </remarks>
+		/// <returns>
+		/// <see langword="true"/> если все ответы верны, и<br/>
+		/// <see langword="false"/> если хотя бы один ответ не верный.
+		/// </returns>
+		private bool CheckAns()
+		{
+			if  ( //если введены правильные ответы для
+				plusone   + plustwo   == sum.Value        && //сложения и
+				minusone  - minustwo  == difference.Value && //для вычитания и
+				timeone   * timetwo   == product.Value    && //для умножения и
+				divideone / dividetwo == quotient.Value      //для деления:
+				) return true; //возврат true,
+			else  return false; //иначе возврат false.
 		}
 
 		/// <summary>
@@ -120,10 +156,52 @@ namespace Math_Quiz
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-        private void startButton_Click(object sender, EventArgs e)
-        {
+		private void startButton_Click(object sender, EventArgs e)
+		{
 			StartMQ();
 			startButton.Enabled = false;
-        }
-    }
+		}
+
+		/// <summary>
+		/// обработчик тика таймера.
+		/// </summary>
+		/// <remarks>
+		/// каждую секунду проверяются ответы и оставшееся время.
+		/// </remarks>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			if (CheckAns()) //если все ответы верны:
+			{
+				timer1.Stop(); //останавливается таймер,
+
+				//добавлено не по заданию.
+				timelabel.Text = "гений нашёлся.."; //вывод сообщения в лейбл таймера о победе.
+
+				MessageBox.Show("наверняка калькулятор использовал да?", "ну че гений"); //выводится сообщение о завершении,
+				startButton.Enabled = true; //включается кнопки старта.
+			}
+			else if (timeleft > 0) //иначе если время ещё осталось:
+			{
+				timeleft--; //вычитается секунда из таймера,
+				timelabel.Text = $"{timeleft} секунд."; //вывод оставшегося времени.
+			}
+			else //если нет верных ответов и не осталось времени:
+			{
+				timer1.Stop(); //остановка таймера,
+				timelabel.Text = "лашпет!"; //вывод сообщения в label для таймера,
+				MessageBox.Show("за временем надо следить.", "не повезло"); //меседжбокс с сообщением об опоздании,
+
+				//установка для всех полей с ответами верные ответы
+				sum.Value = plusone + plustwo;          //суммы,
+				difference.Value = minusone - minustwo; //вычитания,
+				product.Value = timeone * timetwo;      //умножения,
+				quotient.Value = divideone / dividetwo; //деления,
+
+				//включение кнопки старта.
+				startButton.Enabled = true;
+			}
+		}
+	}
 }
