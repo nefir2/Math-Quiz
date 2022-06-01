@@ -126,6 +126,7 @@ namespace Math_Quiz
 			//				начало теста
 			//запуск таймера при запуске теста.
 			timeleft = 30;
+			timelabel.ForeColor = Color.Black; //установка чёрного цвета таймера
 			timelabel.Text = $"{timeleft} секунд.";
 			timer1.Start();
 		}
@@ -202,6 +203,7 @@ namespace Math_Quiz
 				//включение кнопки старта.
 				startButton.Enabled = true;
 			}
+			if (timeleft <= 5) timelabel.ForeColor = Color.Red; //если осталось 5 секунд - установка красного цвета текста таймера.
 		}
 
 		/// <summary>
