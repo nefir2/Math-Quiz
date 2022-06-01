@@ -203,5 +203,24 @@ namespace Math_Quiz
 				startButton.Enabled = true;
 			}
 		}
-	}
+
+		/// <summary>
+		/// событие при нажатии Enter в поле с ответом.
+		/// </summary>
+		/// <remarks>
+		/// если человек нажимает Enter, то выделяется всё поле, а после пользователь может вводить новое значение.
+		/// </remarks>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void answer_Enter(object sender, EventArgs e)
+        {
+			NumericUpDown ansbox = sender as NumericUpDown; //поле с ответом.
+			if (ansbox != null) //если поле не null
+			{
+				string ansval = $"{ansbox.Value}"; //значение поля с ответом приведён в тип string.
+				int length = ansval.Length; //получение длины строки с ответом.
+				ansbox.Select(0, length); //выделение значения поля в самом поле.
+			}
+		}
+    }
 }
