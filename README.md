@@ -1,6 +1,8 @@
 # Math-Quiz
 проект для практики. программа математические задания
 
+[ссылка на учебник для этого проекта.](https://docs.microsoft.com/ru-ru/visualstudio/get-started/csharp/tutorial-windows-forms-math-quiz-create-project-add-controls?view=vs-2019)
+
 ## было дано дополнительное задание. задание гласит: 
 Самостоятельно добавить в тест:
 1. Усложненные варианты заданий с 3,4,5 математическими действиями (3+5:2-1*2 и т.д.)
