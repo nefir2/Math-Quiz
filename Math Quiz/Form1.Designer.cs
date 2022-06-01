@@ -279,6 +279,7 @@ namespace Math_Quiz
             this.startButton.TabIndex = 0;
             this.startButton.Text = "начать тест";
             this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // Form1
             // 
