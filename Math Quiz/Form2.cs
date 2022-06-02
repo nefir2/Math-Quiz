@@ -179,8 +179,8 @@ namespace Math_Quiz
 		{
 			words = new List<string>(ALLwords); //возврат всех слов в коллекцию
 			StartLT();
-			startButton.Enabled = false;
-			changeTypeButton.Enabled = false;
+			//startButton.Enabled = false;
+			//changeTypeButton.Enabled = false;
 		}
 
 		/// <summary>
