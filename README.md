@@ -1,5 +1,5 @@
 # Math-Quiz
-проект для практики. программа математические задания
+проект для практики. программа математический тест
 
 [ссылка на учебник для этого проекта.](https://docs.microsoft.com/ru-ru/visualstudio/get-started/csharp/tutorial-windows-forms-math-quiz-create-project-add-controls?view=vs-2019)
 
