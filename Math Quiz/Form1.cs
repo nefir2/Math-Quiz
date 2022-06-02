@@ -214,8 +214,8 @@ namespace Math_Quiz
 		/// </remarks>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-        private void answer_Enter(object sender, EventArgs e)
-        {
+		private void answer_Enter(object sender, EventArgs e)
+		{
 			NumericUpDown ansbox = sender as NumericUpDown; //поле с ответом.
 			if (ansbox != null) //если поле не null
 			{
@@ -224,5 +224,35 @@ namespace Math_Quiz
 				ansbox.Select(0, length); //выделение значения поля в самом поле.
 			}
 		}
+
+		//дополнительное задание.
+		/// <summary>
+		/// кнопка смены формы.
+		/// </summary>
+		/// <remarks>
+		/// при нажатии на кнопку в форме, закрывается форм1 и открывается форм2.
+		/// </remarks>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ChangeType(object sender, EventArgs e)
+		{
+			Hide();
+			Form2 form = new Form2();
+			form.Show();
+		}
+
+		/// <summary>
+		/// метод для закрытия всей программы, при нажатии на крестик.
+		/// </summary>
+		/// <remarks>
+		/// бывает такое что при закрытии второй открытой формы, программа не завершается. <br/>
+		/// для этого сделан этот метод, чтобы закрыть всю программу при закрытии второй формы.
+		/// </remarks>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void CloseAll(object sender, FormClosingEventArgs e)
+        {
+			Application.Exit();
+        }
     }
 }
