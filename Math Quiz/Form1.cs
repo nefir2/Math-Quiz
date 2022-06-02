@@ -71,6 +71,28 @@ namespace Math_Quiz
 		/// </remarks>
 		int timeleft;
 
+		//поля для дополнительного задания.
+		/// <summary>
+		/// поле для первого числа в сложном примере.
+		/// </summary>
+		int hardone;
+		/// <summary>
+		/// поле для второго числа в сложном примере.
+		/// </summary>
+		int hardtwo;
+		/// <summary>
+		/// поле для третьего числа в сложном примере.
+		/// </summary>
+		int hardthree;
+		/// <summary>
+		/// поле для четвёртого числа в сложном примере.
+		/// </summary>
+		int hardfour;
+		/// <summary>
+		/// поле для пятого числа в сложном примере.
+		/// </summary>
+		int hardfive;
+
 		//методы
 		/// <summary>
 		/// начало математического теста.
@@ -122,10 +144,27 @@ namespace Math_Quiz
 			//установка в поле ответа значение 0.
 			quotient.Value = 0;
 
+			//				сложный пример.
+
+			//случайные числа для сложного примера.
+			hardone = rnd.Next(2, 11);
+			hardtwo = rnd.Next(2, 11);
+			hardthree = rnd.Next(2, 6);
+			hardfour = rnd.Next(2, 6);
+			hardfive = rnd.Next(2, 6); 
+			//вывод полученных чисел в форму (окно).
+			hardLabel1.Text = $"{hardone}";
+			hardLabel2.Text = $"{hardtwo}";
+			hardLabel3.Text = $"{hardthree}";
+			hardLabel4.Text = $"{hardfour}";
+			hardLabel5.Text = $"{hardfive}";
+			//установка в поле ответа значение 0.
+			hardAns.Value = 0;
+
 
 			//				начало теста
 			//запуск таймера при запуске теста.
-			timeleft = 30;
+			timeleft = 60; //таймер увеличен с 30 на 60, так как добавлен сложный пример.
 			timelabel.ForeColor = Color.Black; //установка чёрного цвета таймера
 			timelabel.Text = $"{timeleft} секунд.";
 			timer1.Start();
@@ -147,7 +186,8 @@ namespace Math_Quiz
 				plusone   + plustwo   == sum.Value        && //сложения и
 				minusone  - minustwo  == difference.Value && //для вычитания и
 				timeone   * timetwo   == product.Value    && //для умножения и
-				divideone / dividetwo == quotient.Value      //для деления:
+				divideone / dividetwo == quotient.Value   && //для деления,
+				hardone + hardtwo - hardthree * hardfour / hardfive == hardAns.Value //для сложного примера:
 				) return true; //возврат true,
 			else  return false; //иначе возврат false.
 		}
@@ -161,6 +201,7 @@ namespace Math_Quiz
 		{
 			StartMQ();
 			startButton.Enabled = false;
+			changeTypeButton.Enabled = false;
 		}
 
 		/// <summary>
@@ -182,6 +223,7 @@ namespace Math_Quiz
 
 				MessageBox.Show("наверняка калькулятор использовал да?", "ну че гений"); //выводится сообщение о завершении,
 				startButton.Enabled = true; //включается кнопки старта.
+				changeTypeButton.Enabled = true;
 			}
 			else if (timeleft > 0) //иначе если время ещё осталось:
 			{
@@ -199,9 +241,11 @@ namespace Math_Quiz
 				difference.Value = minusone - minustwo; //вычитания,
 				product.Value = timeone * timetwo;      //умножения,
 				quotient.Value = divideone / dividetwo; //деления,
+				hardAns.Value = hardone + hardtwo - hardthree * hardfour / hardfive; //сложного примера,
 
 				//включение кнопки старта.
 				startButton.Enabled = true;
+				changeTypeButton.Enabled = true;
 			}
 			if (timeleft <= 5) timelabel.ForeColor = Color.Red; //если осталось 5 секунд - установка красного цвета текста таймера.
 		}
@@ -251,8 +295,8 @@ namespace Math_Quiz
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void CloseAll(object sender, FormClosingEventArgs e)
-        {
+		{
 			Application.Exit();
-        }
-    }
+		}
+	}
 }
