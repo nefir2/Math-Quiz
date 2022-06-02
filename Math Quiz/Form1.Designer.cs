@@ -68,6 +68,7 @@ namespace Math_Quiz
             this.hardLabel1 = new System.Windows.Forms.Label();
             this.changeTypeButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.difference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.product)).BeginInit();
@@ -450,11 +451,23 @@ namespace Math_Quiz
             this.label9.TabIndex = 34;
             this.label9.Text = "стандартные примеры";
             // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(529, 190);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(249, 136);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "* если у вас выходит ответ со значениями после запятой, то удалите эти значения и" +
+    " считайте без них.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 449);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.changeTypeButton);
             this.Controls.Add(this.label19);
@@ -495,6 +508,7 @@ namespace Math_Quiz
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Математический тест";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseAll);
             ((System.ComponentModel.ISupportInitialize)(this.sum)).EndInit();
@@ -547,6 +561,7 @@ namespace Math_Quiz
         private System.Windows.Forms.Label hardLabel1;
         private System.Windows.Forms.Button changeTypeButton;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label13;
     }
 }
 

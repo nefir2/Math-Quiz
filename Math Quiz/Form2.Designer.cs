@@ -78,7 +78,7 @@ namespace Math_Quiz
             this.startButton.Location = new System.Drawing.Point(12, 403);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(128, 34);
-            this.startButton.TabIndex = 37;
+            this.startButton.TabIndex = 0;
             this.startButton.Text = "начать тест";
             this.startButton.UseVisualStyleBackColor = false;
             // 
@@ -92,8 +92,10 @@ namespace Math_Quiz
             this.Controls.Add(this.timelabel);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "Form2";
-            this.Text = "лингвистический тест (русский язык)";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Лингвистический тест (русский язык)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseAll);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -269,7 +270,14 @@ namespace Math_Quiz
 			}
 		}
 
-		//дополнительное задание.
+
+
+
+
+
+
+
+		//важные методы для формы.
 		/// <summary>
 		/// кнопка смены формы.
 		/// </summary>
@@ -280,9 +288,10 @@ namespace Math_Quiz
 		/// <param name="e"></param>
 		private void ChangeType(object sender, EventArgs e)
 		{
-			Hide();
 			Form2 form = new Form2();
 			form.Show();
+			Thread.Sleep(10);
+			Hide();
 		}
 
 		/// <summary>
