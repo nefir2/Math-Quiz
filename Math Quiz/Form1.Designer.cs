@@ -151,6 +151,7 @@ namespace Math_Quiz
             this.difference.Name = "difference";
             this.difference.Size = new System.Drawing.Size(100, 35);
             this.difference.TabIndex = 2;
+            this.difference.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label3
             // 
@@ -199,6 +200,7 @@ namespace Math_Quiz
             this.product.Name = "product";
             this.product.Size = new System.Drawing.Size(100, 35);
             this.product.TabIndex = 3;
+            this.product.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label5
             // 
@@ -247,6 +249,7 @@ namespace Math_Quiz
             this.quotient.Name = "quotient";
             this.quotient.Size = new System.Drawing.Size(100, 35);
             this.quotient.TabIndex = 4;
+            this.quotient.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label10
             // 
@@ -314,6 +317,7 @@ namespace Math_Quiz
             this.hardAns.Name = "hardAns";
             this.hardAns.Size = new System.Drawing.Size(100, 35);
             this.hardAns.TabIndex = 21;
+            this.hardAns.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label7
             // 
@@ -437,6 +441,7 @@ namespace Math_Quiz
             this.changeTypeButton.Name = "changeTypeButton";
             this.changeTypeButton.Size = new System.Drawing.Size(190, 34);
             this.changeTypeButton.TabIndex = 33;
+            this.changeTypeButton.TabStop = false;
             this.changeTypeButton.Text = "сменить тип теста";
             this.changeTypeButton.UseVisualStyleBackColor = false;
             this.changeTypeButton.Click += new System.EventHandler(this.ChangeType);

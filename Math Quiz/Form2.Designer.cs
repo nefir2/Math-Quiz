@@ -154,6 +154,7 @@ namespace Math_Quiz
             this.firstBox.Name = "firstBox";
             this.firstBox.Size = new System.Drawing.Size(200, 35);
             this.firstBox.TabIndex = 1;
+            this.firstBox.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // secondBox
             // 
@@ -162,6 +163,7 @@ namespace Math_Quiz
             this.secondBox.Name = "secondBox";
             this.secondBox.Size = new System.Drawing.Size(200, 35);
             this.secondBox.TabIndex = 2;
+            this.secondBox.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // thirdBox
             // 
@@ -170,6 +172,7 @@ namespace Math_Quiz
             this.thirdBox.Name = "thirdBox";
             this.thirdBox.Size = new System.Drawing.Size(200, 35);
             this.thirdBox.TabIndex = 3;
+            this.thirdBox.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // fourthBox
             // 
@@ -178,6 +181,7 @@ namespace Math_Quiz
             this.fourthBox.Name = "fourthBox";
             this.fourthBox.Size = new System.Drawing.Size(200, 35);
             this.fourthBox.TabIndex = 4;
+            this.fourthBox.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // fifthBox
             // 
@@ -186,6 +190,7 @@ namespace Math_Quiz
             this.fifthBox.Name = "fifthBox";
             this.fifthBox.Size = new System.Drawing.Size(200, 35);
             this.fifthBox.TabIndex = 5;
+            this.fifthBox.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // timer1
             // 

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Math_Quiz
@@ -148,11 +142,14 @@ namespace Math_Quiz
 			//				сложный пример.
 
 			//случайные числа для сложного примера.
-			hardone = rnd.Next(2, 11);
-			hardtwo = rnd.Next(2, 11);
-			hardthree = rnd.Next(2, 6);
-			hardfour = rnd.Next(2, 6);
-			hardfive = rnd.Next(2, 6); 
+			do
+			{ //повторяется цикл, если выпавшие числа дают ответ, который меньше 0.
+				hardone = rnd.Next(2, 11);
+				hardtwo = rnd.Next(2, 11);
+				hardthree = rnd.Next(2, 6);
+				hardfour = rnd.Next(2, 6);
+				hardfive = rnd.Next(2, 6);
+			} while (hardone + hardtwo - hardthree * hardfour / hardfive < 0);
 			//вывод полученных чисел в форму (окно).
 			hardLabel1.Text = $"{hardone}";
 			hardLabel2.Text = $"{hardtwo}";
@@ -184,13 +181,13 @@ namespace Math_Quiz
 		private bool CheckAns()
 		{
 			if  ( //если введены правильные ответы для
-				plusone   + plustwo   == sum.Value        && //сложения и
+				plusone   + plustwo   == sum.Value        && //сложения      и
 				minusone  - minustwo  == difference.Value && //для вычитания и
 				timeone   * timetwo   == product.Value    && //для умножения и
-				divideone / dividetwo == quotient.Value   && //для деления,
+				divideone / dividetwo == quotient.Value   && //для деления   и
 				hardone + hardtwo - hardthree * hardfour / hardfive == hardAns.Value //для сложного примера:
 				) return true; //возврат true,
-			else  return false; //иначе возврат false.
+			else return false; //иначе возврат false.
 		}
 
 		/// <summary>
@@ -218,13 +215,9 @@ namespace Math_Quiz
 			if (CheckAns()) //если все ответы верны:
 			{
 				timer1.Stop(); //останавливается таймер,
-
-				//добавлено не по заданию.
 				timelabel.Text = "гений нашёлся.."; //вывод сообщения в лейбл таймера о победе.
-
 				MessageBox.Show("наверняка калькулятор использовал да?", "ну че гений"); //выводится сообщение о завершении,
-				startButton.Enabled = true; //включается кнопки старта.
-				changeTypeButton.Enabled = true;
+				EndTest(); //сток, после окончания теста.
 			}
 			else if (timeleft > 0) //иначе если время ещё осталось:
 			{
@@ -238,24 +231,41 @@ namespace Math_Quiz
 				MessageBox.Show("за временем надо следить.", "не повезло"); //меседжбокс с сообщением об опоздании,
 
 				//установка для всех полей с ответами верные ответы
-				sum.Value = plusone + plustwo;          //суммы,
-				difference.Value = minusone - minustwo; //вычитания,
-				product.Value = timeone * timetwo;      //умножения,
-				quotient.Value = divideone / dividetwo; //деления,
-				hardAns.Value = hardone + hardtwo - hardthree * hardfour / hardfive; //сложного примера,
+				sum.Value        = plusone   + plustwo;   //суммы,
+				difference.Value = minusone  - minustwo;  //вычитания,
+				product.Value    = timeone   * timetwo;   //умножения,
+				quotient.Value   = divideone / dividetwo; //деления,
+				hardAns.Value    = hardone + hardtwo - hardthree * hardfour / hardfive; //сложного примера,
 
-				//включение кнопки старта.
-				startButton.Enabled = true;
-				changeTypeButton.Enabled = true;
+				EndTest(); //возврат к стоку, после окончания теста.
 			}
-			if (timeleft <= 5) timelabel.ForeColor = Color.Red; //если осталось 5 секунд - установка красного цвета текста таймера.
+			if (timeleft <= 10) timelabel.ForeColor = Color.Red; //если осталось 10 секунд - установка красного цвета текста таймера.
 		}
 
 		/// <summary>
-		/// событие при нажатии Enter в поле с ответом.
+		/// приведение теста в изначальное состояние.
 		/// </summary>
 		/// <remarks>
-		/// если человек нажимает Enter, то выделяется всё поле, а после пользователь может вводить новое значение.
+		/// метод вызывается обработчиком таймера, когда заканчивается тест, <br/>
+		/// устанавливает кнопкам включённое состояние, и, <br/>
+		/// если на тексте таймера было меньше 5 секунд, <br/>
+		/// из-за чего он становился красным, устанавливается чёрный цвет.
+		/// </remarks>
+		private void EndTest()
+		{
+			startButton.Enabled = true; //включение кнопки старта.
+			changeTypeButton.Enabled = true; //включение кнопки смены типа теста.
+			timelabel.ForeColor = Color.Black; //установка чёрного цвета таймера.
+			timelabel.Text = ""; //очистка лейбла с текстом.
+		}
+
+		/// <summary>
+		/// событие при фокусировке на поле с ответом.
+		/// </summary>
+		/// <remarks>
+		/// если человек нажимает на поле, куда вводится ответ, <br/>
+		/// то выделяется всё значение, которое находится в этом поле, <br/>
+		/// а после пользователь может вводить новое значение.
 		/// </remarks>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -283,10 +293,10 @@ namespace Math_Quiz
 		/// <param name="e"></param>
 		private void ChangeType(object sender, EventArgs e)
 		{
-			Form2 form = new Form2();
-			form.Show();
-			Thread.Sleep(10);
-			Hide();
+			Form2 form = new Form2(); //создание объекта другой формы.
+			form.Show(); //отображение формы.
+			Thread.Sleep(10); //задержка, для более плавной смены формы.
+			Hide(); //скрытие этой формы.
 		}
 
 		/// <summary>
