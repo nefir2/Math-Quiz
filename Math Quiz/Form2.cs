@@ -24,7 +24,7 @@ namespace Math_Quiz
 
 		//поля
 		/// <summary>
-		/// массив со словами для теста.
+		/// коллекция со словами для теста.
 		/// </summary>
 		static List<string> ALLwords = new List<string>() 
 		{ 
