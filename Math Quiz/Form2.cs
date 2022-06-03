@@ -180,6 +180,7 @@ namespace Math_Quiz
 				timer1.Stop(); //останавливается таймер,
 				timelabel.Text = "гений нашёлся.."; //вывод сообщения в лейбл таймера о победе.
 				MessageBox.Show("наверняка калькулятор использовал да?", "ну че гений"); //вывод сообщения о завершении,
+				timelabel.Text = $"спидран: 0:{30 - timeleft}"; //установка текста после завершения теста.
 				EndTest(); //сток, после окончания теста.
 			}
 			else if (timeleft > 0) //иначе если время ещё осталось:
@@ -219,7 +220,6 @@ namespace Math_Quiz
 			startButton.Enabled = true; //включение кнопки старта.
 			changeTypeButton.Enabled = true; //включение кнопки смены типа теста.
 			timelabel.ForeColor = Color.Black; //установка чёрного цвета таймера.
-			timelabel.Text = ""; //очистка лейбла с текстом.
 		}
 
 		/// <summary>
